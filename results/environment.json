@@ -1,0 +1,11 @@
+{
+  "cpu": "Apple M4",
+  "cpu_cores": 10,
+  "os": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "python": "3.13.11",
+  "numpy": "2.5.3",
+  "opencv": "5.0.0",
+  "opencv_threads": 10,
+  "quick": false,
+  "date": "2026-10-06T12:53:11"
+}
