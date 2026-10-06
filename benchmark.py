@@ -418,7 +418,7 @@ def print_brief(env, ksize_rows, color_rows):
 
 
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser(description="Сравнение быстродействия реализаций медианного фильтра")
+    parser = argparse.ArgumentParser(description="Сравнение скорости обработки реализаций медианного фильтра")
     parser.add_argument("--quick", action="store_true",
                         help="быстрая проверка: меньше k и размеров, медленные методы по одному повтору")
     parser.add_argument("--out", default="results", help="папка для результатов (по умолчанию results)")
