@@ -153,7 +153,7 @@ P_{\text{ост}}(k, d) = 2 \sum_{s=(N+1)/2}^{N} \binom{N}{s} \left(\frac{d}{2}\
 Разбирали исходники тега 5.0.0 (в окружении стоит OpenCV 5.0.0). Функция `cv::medianBlur` в [`median_blur.dispatch.cpp`](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L186-L214) проходит четыре шага [8]:
 
 1. Проверяет, что $k$ нечётное, а массив двумерный; при $k = 1$ просто копирует вход ([стр. 192–198](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L192-L198)).
-2. Если результат запрошен как `UMat`, пробует ядро OpenCL; оно есть только для $k = 3$ и $5$ ([стр. 66](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L66), [200–201](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L200-L201)).
+2. Если результат запрошен как `UMat`, пробует ядро OpenCL; оно есть только для $k = 3$ и $k = 5$ ([стр. 66](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L66), [200–201](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L200-L201)).
 3. Вызывает внешний HAL, библиотеку ускорения под конкретный процессор ([стр. 207–208](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.dispatch.cpp#L207-L208)). Если HAL справился, работа закончена.
 4. Иначе запускает собственный код из [`median_blur.simd.hpp`](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/median_blur.simd.hpp#L860-L906).
 
@@ -492,7 +492,7 @@ PSNR, дБ, и SSIM при окне 5×5:
 
 ### 3.4. Переменный размер ядра
 
-Фрагмент coffee с шумом 20 %, медиана с окном от 3 до 31. PSNR по показанному фрагменту падает с 27,1 дБ при $k = 3$ до 18,2 дБ при $k = 31$. После $k = 3$–$5$ шум уже убран, и дальше рост окна только съедает детали: блики на ложке и край блюдца расплываются в однотонные пятна.
+Фрагмент coffee с шумом 20 %, медиана с окном от 3 до 31. PSNR по показанному фрагменту падает с 27,1 дБ при $k = 3$ до 18,2 дБ при $k = 31$. При $k$ от 3 до 5 шум уже убран, и дальше рост окна только съедает детали: блики на ложке и край блюдца расплываются в однотонные пятна.
 
 ![Медианный фильтр с переменным размером ядра](results/kernel_sweep.png)
 
